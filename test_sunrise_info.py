@@ -1,5 +1,6 @@
 import unittest
 import urllib.request
+import bs4
 
 class TestRunRiseInfo(unittest.TestCase):
 	def test_sample(self):
@@ -21,6 +22,15 @@ class TestRunRiseInfo(unittest.TestCase):
 		f.close()
 
 		self.assertTrue('일출몰' in html)
-		
+
+	def test_get_read_soup(self):
+		f = open('./sunrise.html', 'rt')
+		html = f.read()
+		f.close()
+
+		soup = bs4.BeautifulSoup(html)
+		self.assertEqual(soup.title.text, '월별 해/달 출몰시각')	
+
+
 if __name__== '__main__':
 	unittest.main()
