@@ -31,6 +31,16 @@ class TestRunRiseInfo(unittest.TestCase):
 		soup = bs4.BeautifulSoup(html)
 		self.assertEqual(soup.title.text, '월별 해/달 출몰시각')	
 
+	def test_get_sunrise_time(self):
+		f = open('./sunrise.html', 'rt')
+		html = f.read()
+		f.close()
 
+		soup = bs4.BeautifulSoup(html)
+		td = soup.html.body.div.tbody.tr.td #의문 : TABLE tag가 parsing되지 않는다!
+		# print(td)
+		self.assertEqual(td.text, '06:02')	
+
+			
 if __name__== '__main__':
 	unittest.main()
