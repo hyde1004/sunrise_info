@@ -15,5 +15,12 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertTrue('일출몰' in html)	
 
+	def test_get_local_html(self):
+		f = open('./sunrise.html', 'rt')
+		html = f.read()
+		f.close()
+
+		self.assertTrue('일출몰' in html)
+		
 if __name__== '__main__':
 	unittest.main()
