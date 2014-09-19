@@ -42,9 +42,9 @@ class TestRunRiseInfo(unittest.TestCase):
 		# tr은 날짜별 데이터
 		day_info = soup.tbody.find_all('tr')
 
-		# find_all의 결과는 ResultSet이다. 
-		# ResultSet은 list의 subclass이고, 각 원소가 Tag 객체이다.
-		# find_all 결과에 다시 find_all을 하고 싶다면, 
+		# find_all의 결과는 parsing된 Tag를 원소로 가지는 ResultSet이다. 
+		# ResultSet은 list의 subclass인데, 각 원소가 Tag 객체이다.
+		# 따라서, find_all 결과에 다시 find_all을 하고 싶다면, 
 		# 각 원소에 다시 find_all을 적용하면 된다.
 
 		# for info in day_info:
