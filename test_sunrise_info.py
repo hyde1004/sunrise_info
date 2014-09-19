@@ -42,12 +42,15 @@ class TestRunRiseInfo(unittest.TestCase):
 		# tr은 날짜별 데이터
 		day_info = soup.tbody.find_all('tr')
 
-		# 일출시간은 세번째 td만을 뽑아낸다.
-		sunrise_info = day_info.find_all('td')
+		# find_all의 결과는 ResultSet이다. 
+		# ResultSet은 list의 subclass이고, 각 원소가 Tag 객체이다.
+		# find_all 결과에 다시 find_all을 하고 싶다면, 
+		# 각 원소에 다시 find_all을 적용하면 된다.
 
-		for info in day_info:
-			sunrise_info = info.find_all('td')
-#			print(sunrise_info[2].text)
+		# for info in day_info:
+		# 	sunrise_info = info.find_all('td')
+		#	print(sunrise_info[2].text)
+		sunrise_info = day_info[0].find_all('td')
 
 		self.assertEqual(sunrise_info[2].text, '06:02')	
 
