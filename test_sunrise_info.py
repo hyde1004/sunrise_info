@@ -37,9 +37,19 @@ class TestRunRiseInfo(unittest.TestCase):
 		f.close()
 
 		soup = bs4.BeautifulSoup(html)
-		td = soup.html.body.div.tbody.tr.td #의문 : TABLE tag가 parsing되지 않는다!
-		# print(td)
-		self.assertEqual(td.text, '06:02')	
+
+		# 일짜별 데이터는 tbody에서 순서대로 가는 것이 아니라, tbody안에서 필요한 테그만 붙이면 된다.
+		# tr은 날짜별 데이터
+		day_info = soup.tbody.find_all('tr')
+
+		# 일출시간은 세번째 td만을 뽑아낸다.
+		sunrise_info = day_info.find_all('td')
+
+		for info in day_info:
+			sunrise_info = info.find_all('td')
+#			print(sunrise_info[2].text)
+
+		self.assertEqual(sunrise_info[2].text, '06:02')	
 
 			
 if __name__== '__main__':
