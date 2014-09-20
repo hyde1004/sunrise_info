@@ -94,8 +94,17 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertEqual(sunrise_info[2].text, '06:02')	
 
-	def test_sunset(self):
-		self.assertEqual(sunset_info[3].text, '19:01')
-		
+	def test_sunset_time(self):
+		f = open('./sunrise.html', 'rt')
+		html = f.read()
+		f.close()
+
+		soup = bs4.BeautifulSoup(html)
+		day_info = soup.tbody.find_all('tr')
+		sunset_info = day_info[0].find_all('td')
+
+
+		self.assertEqual(sunset_info[4].text, '19:01')
+
 if __name__== '__main__':
 	unittest.main()
