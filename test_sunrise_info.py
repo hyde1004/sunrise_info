@@ -36,10 +36,50 @@ class TestRunRiseInfo(unittest.TestCase):
 		html = f.read()
 		f.close()
 
+		# html tag structure
+		#
+		# <html>
+		# 	<head>
+		# 	</head>
+
+		# 	<body>
+		# 		<div class="graybox" style="width:650px;">
+		# 			<div>
+		# 				<table>
+		# 				</table>
+		# 			</div>
+
+		# 			<TABLE>
+		# 				<thead>
+		# 				</tead>
+
+		# 				<tbody>
+		# 					<tr>
+		# 						<td>1</td>
+		# 						<td>06:02</td>  <- to be parsed
+		# 					</tr>
+		#
+		#					<tr>
+		#						<td>2</td>
+		#						<td>06:03</td>	<- to be parsed		
+		#					</tr>
+		# 				</tbody>
+		# 			</table>
+		# 		</div>
+		# 	</body>
+		# </html>
+
 		soup = bs4.BeautifulSoup(html)
 
+		# 처음에는 계층적인 구조로 tag를 내려가면서 parsing하려고 하였다. (soup.html.body...)
+		# 그러나 soup는 동일한 tag 중 첫번째 tag를 찾기도 했고,
+		# tag를 이용한 방법으로 잘 되지 않았다.
+
+		# 특이 사항은 tag를 사용할때 상위부모-부모-자식을 다 명시할 필요없이,
+		# 필요한 부모만 넣어주고 중간은 skip해도 되었다.
+
 		# 일짜별 데이터는 tbody에서 순서대로 가는 것이 아니라, tbody안에서 필요한 테그만 붙이면 된다.
-		# tr은 날짜별 데이터
+		# tr은 날짜별 데이터를 담고 있다.
 		day_info = soup.tbody.find_all('tr')
 
 		# find_all의 결과는 parsing된 Tag를 원소로 가지는 ResultSet이다. 
