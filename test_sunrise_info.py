@@ -106,5 +106,8 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertEqual(sunset_info[4].text, '19:01')
 
+	def test_draw_day(self):
+		self.assertEqual(1, 0)
+
 if __name__== '__main__':
 	unittest.main()
