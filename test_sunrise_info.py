@@ -94,6 +94,8 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertEqual(sunrise_info[2].text, '06:02')	
 
-			
+	def test_sunset(self):
+		self.assertEqual(sunset_info[3].text, '19:01')
+		
 if __name__== '__main__':
 	unittest.main()
