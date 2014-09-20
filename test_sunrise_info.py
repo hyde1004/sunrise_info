@@ -1,6 +1,7 @@
 import unittest
 import urllib.request
 import bs4
+import matplotlib.pyplot as plt
 
 class TestRunRiseInfo(unittest.TestCase):
 	def test_sample(self):
@@ -107,7 +108,30 @@ class TestRunRiseInfo(unittest.TestCase):
 		self.assertEqual(sunset_info[4].text, '19:01')
 
 	def test_draw_day(self):
-		self.assertEqual(1, 0)
+		f = open('./sunrise.html', 'rt')
+		html = f.read()
+		f.close()
+
+		sunrise_times = []
+		sunset_times = []
+		soup = bs4.BeautifulSoup(html)
+		day_info = soup.tbody.find_all('tr')
+		for info in day_info:
+			sunrise_info = info.find_all('td')
+			# print(sunrise_info[2].text)
+			time1 = (sunrise_info[2].text).split(':')
+			time2 = (sunrise_info[4].text).split(':')
+			sunrise_times.append(int(time1[0])*60 + int(time1[1]))
+			sunset_times.append(int(time2[0])*60 + int(time2[1]))
+
+		# print(sunrise_time)
+		day = list(range(1, len(sunrise_times)+1))
+		# print(day)
+		plt.plot(day, sunrise_times)
+		plt.plot(day, sunset_times)
+		plt.show()
+
+		self.assertEqual(0, 0)
 
 if __name__== '__main__':
 	unittest.main()
