@@ -32,8 +32,8 @@ class TestRunRiseInfo(unittest.TestCase):
 		self.assertEqual(soup.title.text, '월별 해/달 출몰시각')	
 
 	def test_get_sunrise_time(self):
-		f = open('./sunrise.html', 'rt')
-		html = f.read()
+		f = open('./sunrise.html', 'rb')
+		html = f.read().decode('utf-8')
 		f.close()
 
 		soup = bs4.BeautifulSoup(html)
