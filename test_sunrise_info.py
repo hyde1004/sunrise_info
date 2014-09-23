@@ -2,6 +2,7 @@ import unittest
 import urllib.request
 import bs4
 import matplotlib.pyplot as plt
+import day_info
 
 class TestRunRiseInfo(unittest.TestCase):
 	def test_sample(self):
@@ -137,6 +138,10 @@ class TestRunRiseInfo(unittest.TestCase):
 		plt.show()
 
 		self.assertEqual(0, 0)
+
+	def test_initialize(self):
+		day = day_info.DayInfo()
+		self.assertTrue(day != None)
 
 if __name__== '__main__':
 	unittest.main()
