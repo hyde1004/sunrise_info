@@ -17,6 +17,7 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertTrue('일출몰' in html)	
 
+	@unittest.skip("local html skipping")
 	def test_get_local_html(self):
 		f = open('./sunrise.html', 'rt')
 		html = f.read()
@@ -24,6 +25,7 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertTrue('일출몰' in html)
 
+	@unittest.skip("local html skipping")
 	def test_get_read_soup(self):
 		f = open('./sunrise.html', 'rt')
 		html = f.read()
@@ -32,6 +34,7 @@ class TestRunRiseInfo(unittest.TestCase):
 		soup = bs4.BeautifulSoup(html)
 		self.assertEqual(soup.title.text, '월별 해/달 출몰시각')	
 
+	@unittest.skip("local html skipping")
 	def test_get_sunrise_time(self):
 		f = open('./sunrise.html', 'rb')
 		html = f.read().decode('utf-8')
@@ -95,6 +98,7 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertEqual(sunrise_info[2].text, '06:02')	
 
+	@unittest.skip("local html skipping")
 	def test_sunset_time(self):
 		f = open('./sunrise.html', 'rt')
 		html = f.read()
@@ -107,6 +111,7 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		self.assertEqual(sunset_info[4].text, '19:01')
 
+	@unittest.skip("local html skipping")
 	def test_draw_day(self):
 		f = open('./sunrise.html', 'rt')
 		html = f.read()
