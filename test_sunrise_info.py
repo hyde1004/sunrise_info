@@ -143,5 +143,13 @@ class TestRunRiseInfo(unittest.TestCase):
 		day = day_info.DayInfo()
 		self.assertTrue(day != None)
 
+		day = day_info.DayInfo('천안')
+		self.assertEqual(day.location, '천안')
+
+		day = day_info.DayInfo('천안', 2014, 9)
+		self.assertEqual(day.year, 2014)
+		self.assertEqual(day.month, 9)
+
+
 if __name__== '__main__':
 	unittest.main()
