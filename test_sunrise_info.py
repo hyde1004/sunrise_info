@@ -150,6 +150,20 @@ class TestRunRiseInfo(unittest.TestCase):
 		self.assertEqual(day.year, 2014)
 		self.assertEqual(day.month, 9)
 
+	def test_set_month(self):
+		day = day_info.DayInfo('천안')
+		day.set_month(9)
+		self.assertEqual(day.month, 9)
+
+	def test_set_year(self):
+		day = day_info.DayInfo('천안')
+		day.set_year(2014)
+		self.assertEqual(day.year, 2014)
+
+	def test_requet_url(self):
+		day = day_info.DayInfo('천안', 2014, 9)
+		self.assertEqual(day.request_url(), 'year=2014&month=9&location=%C3%B5%BE%C8')
+
 
 if __name__== '__main__':
 	unittest.main()
