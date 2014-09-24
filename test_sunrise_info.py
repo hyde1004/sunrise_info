@@ -3,6 +3,7 @@ import urllib.request
 import bs4
 import matplotlib.pyplot as plt
 import day_info
+import datetime
 
 class TestRunRiseInfo(unittest.TestCase):
 	def test_sample(self):
@@ -165,6 +166,13 @@ class TestRunRiseInfo(unittest.TestCase):
 		day.read_data()
 		self.assertEqual(day.data[0], '06:02')
 
+	def test_get_dayinfo(self):
+		day = day_info.DayInfo('천안', 2014, 9)
+		day.read_data()
+
+		today = datetime.date(2014, 9, 1)
+		sunrise_time = datetime.time(6, 2)
+		self.assertEqual(day.get_dayinfo(today), sunrise_time)		
 
 if __name__== '__main__':
 	unittest.main()
