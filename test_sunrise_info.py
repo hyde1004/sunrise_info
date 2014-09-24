@@ -163,7 +163,7 @@ class TestRunRiseInfo(unittest.TestCase):
 	def test_read_data(self):
 		day = day_info.DayInfo('천안', 2014, 9)
 		day.read_data()
-		self.assertTrue('일출몰' in day.data.decode('euc-kr'))
+		self.assertEqual(day.data[0], '06:02')
 
 
 if __name__== '__main__':

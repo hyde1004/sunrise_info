@@ -5,7 +5,7 @@ import bs4
 class DayInfo:
 	url = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php'
 	query = None
-	data = None
+	data = []
 
 	location = None
 	year = None
@@ -28,5 +28,20 @@ class DayInfo:
 
 		req = urllib.request.Request(self.url, self.query)
 		f = urllib.request.urlopen(req)
-		self.data = f.read()
+		data = f.read().decode('euc-kr')
 		f.close()
+
+		soup = bs4.BeautifulSoup(data)
+		day_info = soup.tbody.find_all('tr')
+		
+		for info in day_info:
+			sunrise_info = info.find_all('td')
+			# print(sunrise_info[2].text)
+			self.data.append(sunrise_info[2].text)
+
+
+	def get_day_info(self, month, day):
+		if self.data == None:
+			read_data()
+
+
