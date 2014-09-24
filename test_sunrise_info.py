@@ -160,9 +160,10 @@ class TestRunRiseInfo(unittest.TestCase):
 		day.set_year(2014)
 		self.assertEqual(day.year, 2014)
 
-	def test_requet_url(self):
+	def test_read_data(self):
 		day = day_info.DayInfo('천안', 2014, 9)
-		self.assertEqual(day.request_url(), 'year=2014&month=9&location=%C3%B5%BE%C8')
+		day.read_data()
+		self.assertTrue('일출몰' in day.data.decode('euc-kr'))
 
 
 if __name__== '__main__':

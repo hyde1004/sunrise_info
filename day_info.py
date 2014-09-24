@@ -1,12 +1,16 @@
 import urllib.request
+import urllib.parse
 import bs4
 
 class DayInfo:
-	host = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php?'
+	url = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php'
+	query = None
+	data = None
 
 	location = None
 	year = None
 	month = None
+
 	def __init__(self, location=None, year=None, month=None):
 		self.location = location
 		self.year = year
@@ -18,9 +22,11 @@ class DayInfo:
 	def set_year(self, year):
 		self.year = year
 
-	def request_url(self):
-		# data = urllib.parse.urlencode({'location':self.location, 'year':self.year, 'month':self.month})
-		# data = data.encode('euc-kr')
+	def read_data(self):
+		self.query = urllib.parse.urlencode({'year':self.year, 'month':self.month, 'location':self.location.encode('euc-kr')})
+		self.query = self.query.encode('euc-kr')
 
-		data = 'location' + str(self.location.encode('cp949'))
-		return data
+		req = urllib.request.Request(self.url, self.query)
+		f = urllib.request.urlopen(req)
+		self.data = f.read()
+		f.close()
