@@ -1,6 +1,7 @@
 import urllib.request
 import urllib.parse
 import bs4
+import datetime
 
 class DayInfo:
 	url = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php'
@@ -43,5 +44,9 @@ class DayInfo:
 	def get_day_info(self, month, day):
 		if self.data == None:
 			read_data()
+
+		sunrise = self.data[day-1]
+
+		return datetime.time(int(sunrise.split(':')[0]), int(sunrise.split(':')[1]))
 
 

@@ -172,7 +172,7 @@ class TestRunRiseInfo(unittest.TestCase):
 
 		today = datetime.date(2014, 9, 1)
 		sunrise_time = datetime.time(6, 2)
-		self.assertEqual(day.get_dayinfo(today), sunrise_time)		
+		self.assertEqual(day.get_day_info(9, 1), sunrise_time)		
 
 if __name__== '__main__':
 	unittest.main()
