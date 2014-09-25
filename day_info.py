@@ -24,7 +24,10 @@ class DayInfo:
 		self.year = year
 
 	def read_data(self):
-		self.query = urllib.parse.urlencode({'year':self.year, 'month':self.month, 'location':self.location.encode('euc-kr')})
+		# urlencode는 default encoding으로 'utf-8'을 사용하므로,
+		# euc-kr encoding을 명시적으로 넘겨주어야 한다.
+		# 그렇지않으면, utf-8로 이미 변경된채로 다시 euc-kr로 재변환하게 된다.
+		self.query = urllib.parse.urlencode({'year':self.year, 'month':self.month, 'location':self.location}, encoding='euc-kr')
 		self.query = self.query.encode('euc-kr')
 
 		req = urllib.request.Request(self.url, self.query)
