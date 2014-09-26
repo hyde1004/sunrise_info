@@ -28,10 +28,9 @@ class DayInfo:
 		# euc-kr encoding을 명시적으로 넘겨주어야 한다.
 		# 그렇지않으면, utf-8로 이미 변경된채로 다시 euc-kr로 재변환하게 된다.
 		self.query = urllib.parse.urlencode({'year':self.year, 'month':self.month, 'location':self.location}, encoding='euc-kr')
-		self.query = self.query.encode('euc-kr')
+		url = "%s?%s" % (self.address, self.query)
 
-		req = urllib.request.Request(self.address, self.query)
-		f = urllib.request.urlopen(req)
+		f = urllib.request.urlopen(url)
 		data = f.read().decode('euc-kr')
 		f.close()
 
