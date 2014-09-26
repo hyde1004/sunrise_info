@@ -4,7 +4,7 @@ import bs4
 import datetime
 
 class DayInfo:
-	url = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php'
+	address = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php'
 	query = None
 	data = []
 
@@ -30,7 +30,7 @@ class DayInfo:
 		self.query = urllib.parse.urlencode({'year':self.year, 'month':self.month, 'location':self.location}, encoding='euc-kr')
 		self.query = self.query.encode('euc-kr')
 
-		req = urllib.request.Request(self.url, self.query)
+		req = urllib.request.Request(self.address, self.query)
 		f = urllib.request.urlopen(req)
 		data = f.read().decode('euc-kr')
 		f.close()
