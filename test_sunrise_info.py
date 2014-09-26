@@ -10,10 +10,9 @@ class TestRunRiseInfo(unittest.TestCase):
 		self.assertEqual(1, 1)
 
 	def test_get_html(self):
-		url = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php?year=2014&month=9&location=%C3%B5%BE%C8'
-		req = urllib.request.Request(url)
+		address = 'http://astro.kasi.re.kr/Life/Knowledge/sunmoon_map/sunmoon_popup.php?year=2014&month=9&location=%C3%B5%BE%C8'
 
-		f = urllib.request.urlopen(req)
+		f = urllib.request.urlopen(address)
 		html = f.read().decode('euc-kr')
 		f.close()
 
