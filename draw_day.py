@@ -27,12 +27,17 @@ class DrawDay():
 
 day = day_info.DayInfo('천안')
 day.set_year(2014)
-day.set_month(9)
-day.read_data()
-b = []
-for a in day.data:
-	b.append(int(a.split(':')[0])*60+int(a.split(':')[1]))
 
-#print(b)
+b = []
+
+for month in range(12):
+		day.set_month(month+1)
+		day.read_data()
+		# print(len(day.data))
+		for a in day.data:
+			# print(a)
+			b.append(int(a.split(':')[0])*60+int(a.split(':')[1]))
+
+# print(len(b))
 plt.plot(b)
 plt.show()
