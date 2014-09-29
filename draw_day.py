@@ -35,9 +35,8 @@ for month in range(12):
 		day.read_data()
 		# print(len(day.data))
 		for a in day.data:
-			# print(a)
-			b.append(int(a.split(':')[0])*60+int(a.split(':')[1]))
+			time = a.split(':')
+			b.append(int(time[0])*60 + int(time[1]))   # convert to minutes
 
-# print(len(b))
 plt.plot(b)
 plt.show()
