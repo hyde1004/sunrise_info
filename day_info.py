@@ -37,6 +37,7 @@ class DayInfo:
 		soup = bs4.BeautifulSoup(data)
 		day_info = soup.tbody.find_all('tr')
 		
+		self.data = []
 		for info in day_info:
 			sunrise_info = info.find_all('td')
 			# print(sunrise_info[2].text)
