@@ -5,7 +5,7 @@ import day_info
 day = day_info.DayInfo('천안')
 day.set_year(2014)
 
-b = []
+day_infos = []
 
 for month in range(12):
 		day.set_month(month+1)
@@ -13,7 +13,7 @@ for month in range(12):
 		# print(len(day.data))
 		for a in day.data:
 			time = a.split(':')
-			b.append(int(time[0])*60 + int(time[1]))   # convert to minutes
+			day_infos.append(int(time[0])*60 + int(time[1]))   # convert to minutes
 
-plt.plot(b)
+plt.plot(day_infos)
 plt.show()
