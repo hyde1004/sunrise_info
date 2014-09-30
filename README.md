@@ -5,3 +5,4 @@
   - math.trunc()
   - datetime.date
   - matplotlib.dates.date2num()
+  - assertAlmostEqual()
